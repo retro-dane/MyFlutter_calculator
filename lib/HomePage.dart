@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({required this.title}) ;
 
@@ -67,19 +68,22 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget buildButton(String buttonText) {
+  Widget buildButton(String buttonText,) {
+   Color color_= Colors.redAccent.withOpacity(0.5);
     return Expanded(
       child: MaterialButton(
-        padding: EdgeInsets.all(24.0),
-        child: Text(buttonText,
-          style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold
+        color:color_,
+        padding: const EdgeInsets.all(24.0),
+          child: Text(buttonText,
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 35.0,
+                fontWeight: FontWeight.bold
+            ),
           ),
-        ),
-        onPressed: () =>
-            buttonPressed(buttonText)
-        ,
+        onPressed: () {
+          buttonPressed(buttonText);
+        }
       ),
     );
   }
@@ -88,57 +92,68 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          backgroundColor: Colors.redAccent.withOpacity(0.5),
+          centerTitle: true,
+          elevation: 3,
+          title: const Text("Calculator",
+            style: TextStyle(
+            fontWeight: FontWeight.bold,
+              fontSize: 25,
+              color: Colors.black
+          ),),
         ),
         body: Container(
             child: Column(
               children: <Widget>[
                 Container(
                     alignment: Alignment.centerRight,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         vertical: 24.0,
                         horizontal: 12.0
                     ),
-                    child: Text(output, style: TextStyle(
+                    child: Text(output, style: const TextStyle(
                       fontSize: 48.0,
                       fontWeight: FontWeight.bold,
 
                     ))),
-                Expanded(
-                  child: Divider(),
+                const Expanded(
+                  child: Divider(thickness: 0,)
                 ),
 
-
-                Column(children: [
+                ///This is a layout of the numberson the Calculator pad.
+                Column(
+                    children: [
                   Row(children: [
                     buildButton("7"),
                     buildButton("8"),
                     buildButton("9"),
-                    buildButton("/")
+                    buildButton("/"),
                   ]),
 
-                  Row(children: [
-                    buildButton("4"),
+                  Row(
+                      children: [
+                    buildButton("4",),
                     buildButton("5"),
                     buildButton("6"),
                     buildButton("X")
                   ]),
 
-                  Row(children: [
+                      Row(
+                      children: [
                     buildButton("1"),
                     buildButton("2"),
                     buildButton("3"),
                     buildButton("-")
                   ]),
 
-                  Row(children: [
+                      Row(children: [
                     buildButton("."),
                     buildButton("0"),
                     buildButton("00"),
                     buildButton("+")
                   ]),
 
-                  Row(children: [
+                      Row(children: [
                     buildButton("CLEAR"),
                     buildButton("="),
                   ])
